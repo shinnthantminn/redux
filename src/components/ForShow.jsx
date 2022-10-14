@@ -1,5 +1,5 @@
 import {useSelector,useDispatch} from 'react-redux'
-import { Remove } from '../store/reducer/TodoSlicer';
+import { Remove,edit } from '../store/reducer/TodoSlicer';
 
 const ForShow = () => {
 
@@ -8,6 +8,16 @@ const ForShow = () => {
 
     const handleDelete = (id) => {
         dispatch(Remove({id:id}))
+    }
+
+    const handleEdit = (id) => {
+      const name = prompt("Enter yout edit name")
+      const phone = prompt("Enter your phone number")
+
+      if(name && phone){
+
+        dispatch(edit({id:id,name:name,phone:phone}))
+      }
     }
 
   return (
@@ -19,6 +29,7 @@ const ForShow = () => {
 
                <div>
                 <button onClick={handleDelete.bind(null,i.id)}>Delete</button>
+                <button onClick={handleEdit.bind(null,i.id)}>Edit</button>
                </div>
             </div>)
         }

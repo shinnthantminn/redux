@@ -20,9 +20,12 @@ const TodoSlicer = createSlice({
         Remove:(state,action)=> {
             return state.filter(i => i.id !== action.payload.id)
         },
+        edit:(state,action ) => {
+            return state.map(i => i.id === action.payload.id ? {id:i.id,name:action.payload.name,phone:action.payload.phone} : i) 
+        }
     }
 })
 
-export const {Add,Remove} = TodoSlicer.actions
+export const {Add,Remove,edit} = TodoSlicer.actions
 
 export default TodoSlicer.reducer;
